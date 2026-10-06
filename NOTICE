@@ -1,0 +1,22 @@
+fasttree_gpu is a modified distribution of FastTree 2.2.0.
+
+FastTree was written by Morgan N. Price and contributors.
+Copyright (C) 2008-2015 The Regents of the University of California.
+The full upstream copyright, license, warranty, and disclaimer notices are
+retained in src/FastTree.c and upstream/FastTree-2.2.0.c.
+
+The upstream source permits redistribution under GNU GPL version 2 or, at
+your option, any later version. This distribution, including the CUDA backend
+and associated tools, is distributed under GPL version 3 or later. LICENSE
+contains the GPL version 3 text supplied with the upstream snapshot;
+upstream/LICENSE preserves that file unchanged. No additional restrictions
+are imposed on the upstream source.
+
+Modified source: src/FastTree.c, 2026-10-06.
+Changes add optional CUDA routing, numerical kernels, resident likelihood
+workspaces, verification controls, and executable branding. The unmodified
+reference is included for comparison. This is not an official FastTree release.
+
+The small test alignments are excerpts of the upstream FastTree example
+alignments (16S and COG), converted to FASTA.
+Upstream: https://morgannprice.github.io/fasttree/

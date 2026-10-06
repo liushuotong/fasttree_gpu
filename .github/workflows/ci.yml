@@ -1,0 +1,21 @@
+name: CPU and CLI compatibility
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  cpu:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: CPU, upstream CLI and benchmark-tool tests
+        run: make check CC=cc
+      - name: Validate curated source archive
+        run: |
+          python3 scripts/package_release.py --check
+          make dist
+          mkdir -p "$RUNNER_TEMP/fasttree-package"
+          tar -xzf dist/fasttree_gpu-source.tar.gz -C "$RUNNER_TEMP/fasttree-package"
+          make -C "$RUNNER_TEMP/fasttree-package/fasttree_gpu" cpu CC=cc
